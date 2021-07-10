@@ -21,3 +21,5 @@ TEAM SCRUM -Backend  Sebastián Prado
                      Richar Yohan Espinosa De La Cruz
             Frontend Nicolas Figueroa
                      Sandra Patricia Vera Solano
+
+Diagrama (Sprint2): https://online.visual-paradigm.com/community/share/ciclo4-vpd-m3q7arvky
