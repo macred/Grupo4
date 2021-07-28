@@ -1,0 +1,60 @@
+
+<mat-card>
+  <form (submit)="onSignup(userForm)" #userForm="ngForm">
+    <mat-form-field>
+      <input
+      matInput type="text"
+      name="name"
+      [ngModel] = "user.name"
+      required
+      #name="ngModel"
+      placeholder="Nombre y apellido"/>
+    </mat-form-field>
+    <mat-error *ngIf="name.invalid">Campo invalido</mat-error>
+    <mat-form-field>
+      <input
+      matInput
+      type="email"
+      name="email"
+      [ngModel] = "user.email"
+      required
+      #email="ngModel"
+      placeholder="Correo electrónico"/>
+    </mat-form-field>
+    <mat-error *ngIf="email.invalid">Campo invalido</mat-error>
+    <mat-form-field>
+    <input
+    matInput
+    type="password"
+    name="password"
+    [ngModel] = "user.password"
+    required
+    #password="ngModel"
+    placeholder="Contraseña">
+    </mat-form-field>
+    <mat-error *ngIf="password.invalid">Campo invalido</mat-error>
+    <mat-form-field>
+      <input
+      matInput
+      type="text"
+      name="direccion"
+      [ngModel] = "user.direccion"
+      required
+      #direccion="ngModel"
+      placeholder="Dirección de envío">
+      </mat-form-field>
+      <mat-error *ngIf="direccion.invalid">Campo invalido</mat-error>
+      <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="celular"
+        [ngModel] = "user.celular"
+        required
+        #celular="ngModel"
+        placeholder="Celular">
+      </mat-form-field>
+      <mat-error *ngIf="celular.invalid">Campo invalido</mat-error>
+    <button mat-raised-button color="primary" type="submit">Signup</button>
+  </form>
+  </mat-card>

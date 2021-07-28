@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">Misión Blog</a>
+  </span>
+
+  <span class="spacer"></span>
+<ul>
+  <li *ngIf="isAuth">
+  <a mat-button routerLink= "/new" routerLinkActive="mat-accent">Nuevo producto</a>
+  </li>
+  <li *ngIf="!isAuth">
+    <a mat-button routerLink= "/login" routerLinkActive="mat-accent">Ingresar</a>
+  </li>
+  <li *ngIf="!isAuth">
+    <a mat-button routerLink= "/signup" routerLinkActive="mat-accent">Registrarse</a>
+  </li>
+  <li *ngIf="isAuth">
+    <a mat-button routerLink= "/dates" routerLinkActive="mat-accent">Mi cuenta</a>
+  </li>
+  <li *ngIf="isAuth">
+    <button mat-button (click)="onLogout()">Logout</button>
+  </li>
+</ul>
+
+<a mat-raised-button>
+  <mat-icon>shopping_cart</mat-icon>
+  Carrito
+</a>
+</mat-toolbar>

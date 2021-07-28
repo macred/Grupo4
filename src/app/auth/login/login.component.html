@@ -1,0 +1,28 @@
+<mat-card>
+  <form (submit)="onLogin(userForm)" #userForm="ngForm">
+    <mat-form-field>
+      <input
+      matInput
+      type="email"
+      name="email"
+      [ngModel] = "user.email"
+      required
+      #email="ngModel"
+      placeholder="Correo electrónico"/>
+    </mat-form-field>
+    <mat-error *ngIf="email.invalid">Campo invalido</mat-error>
+    <mat-form-field>
+    <input
+    matInput
+    type="password"
+    name="password"
+    [ngModel] = "user.password"
+    required
+    #password="ngModel"
+    placeholder="Contraseña">
+    </mat-form-field>
+    <mat-error *ngIf="password.invalid">Campo invalido</mat-error>
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  </form>
+  </mat-card>
+

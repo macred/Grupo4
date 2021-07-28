@@ -1,0 +1,42 @@
+:host{
+  display:block;
+  margin-top: 2rem;
+}
+
+#identificador1 {
+  display: inline;
+  justify-content: space-between;
+  margin-right: 4.5rem;
+  margin-left: 0.5rem;
+  font-weight: 700;
+}
+#identificador2 {
+  display: inline;
+  justify-content: space-between;
+  margin-right: 7rem;
+  font-weight: 700;
+}
+#identificador3 {
+  display: inline;
+  justify-content: space-between;
+  margin-right: 10.5rem;
+  font-weight: 700;
+}
+#identificador4 {
+  display: inline;
+  justify-content: space-between;
+  margin-right: 8.5rem;
+  font-weight: 700;
+}
+#identificador5 {
+  display: inline;
+  justify-content: space-between;
+  margin-right: 4.7rem;
+  font-weight: 700;
+}
+#identificador6 {
+  display: inline;
+  justify-content: space-between;
+  margin-right: 5rem;
+  font-weight: 700;
+}

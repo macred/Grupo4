@@ -1,0 +1,54 @@
+<mat-card>
+<form (submit)="onSavePost(postForm)" #postForm="ngForm">
+  <mat-form-field>
+    <input
+    matInput type="text"
+    name="nombre"
+    [ngModel] = "post.nombre"
+    required #nombre="ngModel"
+    placeholder="Nombre"/>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+    matInput type="text"
+    name="precio"
+    [ngModel] = "post.precio"
+    required
+    #precio="ngModel"
+    placeholder="Precio"/>
+  </mat-form-field>
+  <mat-form-field>
+  <input
+  matInput name="medida"
+  [ngModel] = "post.medida"
+  required
+  #medida="ngModel"
+  placeholder="Medida">
+  </mat-form-field>
+  <mat-form-field>
+    <input
+    matInput name="descripcion"
+    [ngModel] = "post.descripcion"
+    required
+    #descripcion="ngModel"
+    placeholder="Descripcion">
+    </mat-form-field>
+    <mat-form-field>
+  <input
+  matInput name="disponibilidad"
+  [ngModel] = "post.disponibilidad"
+  required
+  #disponibilidad="ngModel"
+  placeholder="Disponibilidad">
+  </mat-form-field>
+  <mat-form-field>
+    <input
+    matInput name="unidades"
+    [ngModel] = "post.unidades"
+    required
+    #unidades="ngModel"
+    placeholder="Unidades">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Guardar</button>
+</form>
+</mat-card>
