@@ -7,6 +7,7 @@ import {ProductslistadminComponent} from './components/productslistadmin/product
 import {ProductslistComponent} from './components/productslist/productslist.component'
 import {SingupComponent} from './components/singup/singup.component'
 import {SinginComponent} from './components/singin/singin.component'
+import { CreateproductComponent } from './components/createproduct/createproduct.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'registrar',
     component: SingupComponent
+  },
+
+  {
+    path: 'agregarproducto',
+    component: CreateproductComponent
   }
 
 ];

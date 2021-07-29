@@ -9,6 +9,7 @@ import { SingupComponent } from './components/singup/singup.component';
 import { SinginComponent } from './components/singin/singin.component';
 import { ProductslistComponent } from './components/productslist/productslist.component';
 import { ProductslistadminComponent } from './components/productslistadmin/productslistadmin.component';
+import { CreateproductComponent } from './components/createproduct/createproduct.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductslistadminComponent } from './components/productslistadmin/produ
     SingupComponent,
     SinginComponent,
     ProductslistComponent,
-    ProductslistadminComponent
+    ProductslistadminComponent,
+    CreateproductComponent
   ],
   imports: [
     BrowserModule,
