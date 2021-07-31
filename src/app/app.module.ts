@@ -21,6 +21,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import {MatCardModule} from '@angular/material/card';
 import { AuthInterceptor} from './auth/auth.interceptor';
 import { DatesComponent } from './dates/dates.component';
+import { CarritoComponent } from './carrito/carrito.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { DatesComponent } from './dates/dates.component';
     LoginComponent,
     SignupComponent,
     DatesComponent,
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { DatesComponent } from './dates/dates.component';
     HttpClientModule,
     MatIconModule,
     MatCardModule,
+    MatBadgeModule
 
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],

@@ -19,7 +19,7 @@
       <mat-panel-description>{{ post.unidades }} </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-action-row *ngIf="isAuth && post.author === userId">
-      <button mat-button color="accent">
+      <button (click)="addPost()" mat-button color="accent">
         Añadir al carrito
       </button>
       <button

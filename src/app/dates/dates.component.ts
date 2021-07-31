@@ -21,6 +21,7 @@ export class DatesComponent implements OnInit {
   ngOnInit(): void {
 
     this.userId = this.authService.getUserId();
+    this.user = this.authService.getUser(this.userId);
     console.log(this.userId);
     console.log(this.user);
     this.authListenerSub = this.authService

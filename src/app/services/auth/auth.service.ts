@@ -30,6 +30,7 @@ export class AuthService {
   }
 
   getUserId() {
+    console.log(this.userId);
     return this.userId;
   }
 
@@ -44,6 +45,7 @@ export class AuthService {
   }
 
   getUser(userId: string): any{
+    console.log(userId);
     this.http.get<User>(this.url + '/' + userId).subscribe((response) => {
       console.log(response);
       return response;

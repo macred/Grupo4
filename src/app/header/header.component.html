@@ -22,7 +22,7 @@
   </li>
 </ul>
 
-<a mat-raised-button>
+<a routerLink="/carrito" mat-raised-button [matBadge]='total$ | async' color="warn">
   <mat-icon>shopping_cart</mat-icon>
   Carrito
 </a>

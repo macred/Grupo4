@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { User } from 'src/app/Models/user.model';
 
+import { CarritoService } from '../../services/carrito/carrito.service';
 import { PostService } from 'src/app/services/post/post.service';
 import { Post } from '../../Models/post.model';
 
@@ -13,6 +14,9 @@ import { Post } from '../../Models/post.model';
 })
 export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
+
+  @Input() post!: Post;
+  @Output() productClicked: EventEmitter<any> = new EventEmitter();
   postsSub: Subscription;
   isAuth = false;
   userId!: string;
@@ -20,7 +24,8 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   constructor(
     public postService: PostService,
-    public authService: AuthService
+    public authService: AuthService,
+    private carritoService: CarritoService,
   ) {
     this.postsSub = this.postService
       .getPostsUpdateListener()
@@ -28,6 +33,11 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.posts = posts;
       });
   }
+
+  addPost(){
+    console.log('Añadir al carrito');
+    this.carritoService.addPost(this.post);
+}
 
   ngOnInit(): void {
     this.postService.getPosts();
@@ -54,5 +64,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   onDelete(id: string): void {
     this.postService.deletePost(id);
   }
+
 
 }
