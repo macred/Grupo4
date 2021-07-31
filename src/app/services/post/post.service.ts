@@ -15,9 +15,11 @@ import {map} from 'rxjs/operators';
 export class PostService {
 
   url = 'http://localhost:3000/api/posts';
-
   posts: Post[] =[]
   postUpdated = new Subject<Post[]>();
+  private postId!: string;
+  private postStatusListener = new Subject<boolean>();
+  private isAuthenticated = true;
 
   constructor(private http:HttpClient, private router: Router) { }
 
@@ -31,6 +33,13 @@ export class PostService {
     });
   }
 
+  getPostId() {
+    return this.postId;
+  }
+
+  getIsAuthenticated() {
+    return this.isAuthenticated;
+  }
   getPosts(){
     this.http.get<any>(this.url).pipe(map((postData)=>{
       return postData.map((post:{_id:string,nombre:string, precio:number, medida:string, descripcion: string, disponibilidad:boolean, unidades:number, author: string, authorData: User})=>{
@@ -57,6 +66,9 @@ export class PostService {
     return this.http.get<{_id:string,nombre:string, precio:number, medida:string, descripcion: string, disponibilidad:boolean, unidades:number, author: string;}>(this.url+"/"+id)
   }
 
+  getPostStatusListener() {
+    return this.postStatusListener.asObservable();
+  }
 
   deletePost(id: string) {
     this.http.delete(this.url+"/"+id).subscribe((result) => {

@@ -62,7 +62,6 @@ router.get("", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  console.log(req.params.id);
   User.findById(req.params.id).then((userResult) => {
     if (userResult) {
       console.log(userResult)

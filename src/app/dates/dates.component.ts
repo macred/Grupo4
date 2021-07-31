@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class DatesComponent implements OnInit {
   isAuth = true;
-  user! : User;
+  user : User;
   userId!: string;
   private authListenerSub!: Subscription;
 
@@ -21,16 +21,20 @@ export class DatesComponent implements OnInit {
   ngOnInit(): void {
 
     this.userId = this.authService.getUserId();
-    this.user = this.authService.getUser(this.userId);
     console.log(this.userId);
-    console.log(this.user);
+    this.user = this.authService.getUser(this.userId);
+    this.authService.getUser(this.userId).subscribe((user: User) =>{
+      console.log(user);
+
+    this.user= user;
+    });
+
     this.authListenerSub = this.authService
       .getAuthStatusListener()
       .subscribe((isAuthenticated) => {
         this.isAuth = isAuthenticated;
         console.log(this.userId)
         this.userId = this.authService.getUserId();
-        this.user = this.authService.getUser(this.userId);
         console.log(this.user);
       });
   }

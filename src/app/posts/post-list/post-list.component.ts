@@ -17,9 +17,11 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   @Input() post!: Post;
   @Output() productClicked: EventEmitter<any> = new EventEmitter();
+
   postsSub: Subscription;
   isAuth = false;
   userId!: string;
+
   private authListenerSub!: Subscription;
 
   constructor(

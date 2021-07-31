@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/Models/user.model';
-
+import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { PostService } from '../post/post.service';
@@ -30,7 +30,6 @@ export class AuthService {
   }
 
   getUserId() {
-    console.log(this.userId);
     return this.userId;
   }
 
@@ -45,11 +44,9 @@ export class AuthService {
   }
 
   getUser(userId: string): any{
-    console.log(userId);
-    this.http.get<User>(this.url + '/' + userId).subscribe((response) => {
-      console.log(response);
+    return this.http.get<User>(this.url + '/' + userId).pipe(map((response) => {
       return response;
-    });
+    }));
   }
 
   login(email: string, password: string) {

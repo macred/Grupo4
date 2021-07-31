@@ -1,8 +1,8 @@
 <p>carrito works!</p>
 
-<div *ngIf="(total$ | async) as posts">
+<div *ngIf="(posts$ | async) as posts">
   <p *ngIf="posts.length === 0"> no hay productos</p>
-  <div class="row" *ngFor="let posts of posts">
+  <div class="row" *ngFor="let post of posts">
       <div class="col-xs-12 col-sm-2 col-md-2">
 
       </div>

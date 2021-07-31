@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../Models/post.model';
 import { CarritoService } from '../services/carrito/carrito.service';
+import { PostService } from '../services/post/post.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-carrito',
@@ -11,15 +13,18 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
+  isAuth = true;
+  posts$: Observable<Post[]>;
 
-  total$: Observable<Post[]>;
-  post!: Post;
+  postId!: string;
+  private postListenerSub!: Subscription;
 
-  constructor(private carritoService: CarritoService, public route: ActivatedRoute) {
+  constructor(private carritoService: CarritoService,
+              public route: ActivatedRoute,
+              private postService: PostService) {
 
-    this.post= {id: "", nombre: "", precio: 0, medida: "", descripcion: "", disponibilidad: true, unidades: 0, author:'' }
 
-    this.total$ = this.carritoService.total$.pipe(
+    this.posts$ = this.carritoService.carrito$.pipe(
       map((posts) => {
       const distintos = [...new Set(posts)];
       return distintos;
@@ -27,24 +32,5 @@ export class CarritoComponent implements OnInit {
    }
 
   ngOnInit(): void {
-  //   this.route.paramMap.subscribe((paramMap:ParamMap)=>{
-  //     if(paramMap.has("postId")){
-  //       this.postId = paramMap.get("postId")!;
-  //       this.postService.getPost(this.postId).subscribe(postData =>{
-  //         this.post = {id: postData._id,
-  //                     nombre: postData.nombre,
-  //                     precio: postData.precio,
-  //                     medida: postData.medida,
-  //                     descripcion: postData.descripcion,
-  //                     disponibilidad: postData.disponibilidad,
-  //                     unidades: postData.unidades,
-  //                     author: postData.author,};
-  //       })
-  //     }else{
-  //       this.postId = null!;
-  //     }
-  //   })
-  // }
-  // }
 
 }}

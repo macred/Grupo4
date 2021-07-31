@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private authListenerSub!: Subscription;
 
   constructor(private authService: AuthService, private carritoService: CarritoService) {
-    this.total$ = this.carritoService.total$
+    this.total$ = this.carritoService.carrito$
     .pipe(
      map(post=> post.length)
     );
