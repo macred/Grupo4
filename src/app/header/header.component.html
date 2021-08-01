@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar class= "p-3 mb-2 bg-success text-white">
   <span>
     <a routerLink="/">Misión Blog</a>
   </span>
@@ -22,7 +22,7 @@
   </li>
 </ul>
 
-<a routerLink="/carrito" mat-raised-button [matBadge]='total$ | async' color="warn">
+<a routerLink="/carrito" mat-raised-button [matBadge]='total$ | async' color="primary">
   <mat-icon>shopping_cart</mat-icon>
   Carrito
 </a>
