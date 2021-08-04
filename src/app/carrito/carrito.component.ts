@@ -14,8 +14,8 @@ import { Subscription } from 'rxjs';
 })
 export class CarritoComponent implements OnInit {
   isAuth = true;
-  posts$: Observable<Post[]>;
-
+  posts!: Post[];
+  post!: Post;
   postId!: string;
   private postListenerSub!: Subscription;
 
@@ -24,13 +24,14 @@ export class CarritoComponent implements OnInit {
               private postService: PostService) {
 
 
-    this.posts$ = this.carritoService.carrito$.pipe(
-      map((posts) => {
-      const distintos = [...new Set(posts)];
-      return distintos;
-    }));
+                this.postListenerSub =this.carritoService.getCarrito().subscribe((post: Post[])=>{
+                  this.posts = post;
+                })
    }
 
   ngOnInit(): void {
-
+  this.posts = this.carritoService.getPosts();
+  this.postListenerSub =this.carritoService.getCarrito().subscribe((post: Post[])=>{
+    this.posts = post;
+  })
 }}
