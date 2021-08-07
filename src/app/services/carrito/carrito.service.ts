@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {Post} from '../../Models/post.model';
 
 @Injectable({
@@ -7,16 +7,23 @@ import {Post} from '../../Models/post.model';
 })
 export class CarritoService {
 
-  private posts: Post[] = [];
-  private carrito = new BehaviorSubject<Post[]>([]);
+  posts: Post[] = [];
 
-  carrito$ = this.carrito.asObservable();
+  carrito = new Subject<Post[]>();
+
 
   constructor() { }
 
   addPost(post: Post){
-    this.posts = [...this.posts, post];
-    this.carrito.next(this.posts);
-
-
-}}
+    this.posts.push(post);
+    console.log(this.posts)
+    this.carrito.next([...this.posts])
+}
+  getPosts(){
+    return this.posts;
+}
+  getCarrito(){
+    console.log(this.posts)
+    return this.carrito.asObservable();
+}
+}

@@ -36,10 +36,10 @@ export class PostListComponent implements OnInit, OnDestroy {
       });
   }
 
-  addPost(){
+  addPost(post: Post){
     console.log('Añadir al carrito');
-    this.carritoService.addPost(this.post);
-}
+    this.carritoService.addPost(post);
+  }
 
   ngOnInit(): void {
     this.postService.getPosts();

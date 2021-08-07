@@ -27,7 +27,7 @@
             </div>
           </mat-expansion-panel-header>
           <mat-action-row *ngIf="isAuth && post.author === userId">
-            <button (click)="addPost()" mat-button color="accent">
+            <button (click)="addPost(post)" mat-button color="accent">
               Añadir al carrito
             </button>
             <button
