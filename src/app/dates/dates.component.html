@@ -1,6 +1,34 @@
-<p>{{userId}}</p>
-<p>{{user.name}}</p>
-<p>{{user.email}}</p>
-<p>{{user.direccion}}</p>
-<p>{{user.celular}}</p>
-<p>hola</p>
+
+
+<div class="row">
+  <div class="col-md-4 mt-3 mx-auto">
+    <div class="card">
+      <div class="card-header">
+        Bienvenido de nuevo <em>{{user.name}}</em>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nombres</th>
+            <td scope="col">{{user.name}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Correo</th>
+            <td>{{user.email}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Dirección</th>
+            <td>{{user.direccion}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Celular</th>
+            <td>{{user.celular}}</td>
+          </tr>
+        </thead>
+      </table>
+      <button type="submit" class="btn btn-outline-primary mt-1">Actualizar mis datos</button>
+      </div>
+  </div>
+</div>
+
+

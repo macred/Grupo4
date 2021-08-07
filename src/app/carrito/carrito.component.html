@@ -1,6 +1,46 @@
-<p>carrito works!</p>
+<h2 class="mx-ml"> Carrito de compra </h2>
 
-<div *ngIf="(posts$ | async) as posts">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Producto</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Precio</th>
+    </tr>
+  </thead>
+  <tbody >
+    <tr>
+      <th scope="row">1</th>
+      <td>imagen</td>
+      <td>Descripión</td>
+      <td>$</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td colspan="2"></td>
+      <td>Total</td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <button type="button" class="btn btn-outline-danger">Finalizar pedido</button>
+ </div>
+
+
+<!-- <div *ngIf="(posts$ | async) as posts">
   <p *ngIf="posts.length === 0"> no hay productos</p>
   <div class="row" *ngFor="let post of posts">
       <div class="col-xs-12 col-sm-2 col-md-2">
@@ -15,4 +55,4 @@
           <div class="box">
               {{ post.precio }}
           </div>
-      </div>
+      </div> -->

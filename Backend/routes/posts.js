@@ -1,4 +1,5 @@
 const express = require("express");
+const multer = require("multer");
 const Post = require("../Models/post");
 const User = require("../Models/user");
 
@@ -6,14 +7,33 @@ const router = express.Router();
 
 const checkAuth = require("../middleware/check-auth");
 
+const MIME_TYPES ={
+  "image/png": "png",
+  "image/jpeg": "jpeg",
+  "image/jpg": "jpg",
+}
+
+const storage = multer.diskStorage({
+  destination: (req, file,cb) =>{
+    console.log(file);
+    const isValid = MIME_TYPES[file.mimetype];
+    let error = new Error ("El tipo de archivo no es válido");
+    if(isValid){
+      error = null;
+    }
+    cb(error,"backend/files");
+    },
+    filename: (req,file, cb)=>{
+      const name = file.originalname.toLowerCase().split(" ").join("-");
+      const ext =  MIME_TYPES[file.mimetype];
+      cb(null, name+"-"+Date.now()+"."+ext);
+    },
+});
+
 router.get("", (req, res) => {
   Post.find().then((postResult) => {
-    User.findById(postResult.author).then((user) => {
-      postResult["authorPost"] = user;
-      console.log(user);
-    res.status(200).json(postResult);
-  });
-});
+   res.status(200).json(postResult);
+   });
 });
 
 router.get("/:id", (req, res) => {
@@ -26,7 +46,8 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.post("", checkAuth, (req, res) => {
+router.post("", checkAuth, multer({storage:storage}).single("image"), (req, res) => {
+  const url = req.protocol + "://" + req.get("host");
   const postForAdd = new Post({
     nombre: req.body.nombre,
     precio: req.body.precio,
@@ -34,11 +55,15 @@ router.post("", checkAuth, (req, res) => {
     descripcion: req.body.descripcion,
     disponibilidad: req.body.disponibilidad,
     unidades: req.body.unidades,
+    imageUrl: url+"/files/"+ req.file.filename,
     author: req.userData.userId,
   });
   postForAdd.save().then((createdPost) => {
     res.status(201).json({
-      idPostAdded: createdPost._id,
+      post:{
+        ...postForAdd,
+        id:createdPost._id,
+      },
     });
   });
 });
@@ -55,8 +80,15 @@ router.delete("/:id", checkAuth, (req, res) => {
   );
 });
 
-router.put("/:id", checkAuth, (req, res) => {
-  console.log(req.params.id);
+router.put("/:id", checkAuth, multer({ storage: storage }).single("image"), (req, res) => {
+  let image = "";
+    if (req.file) {
+      const url = req.protocol + "://" + req.get("host");
+      image = url + "/files/" + req.file.filename;
+    }
+    else{
+      image = req.body.imageUrl;
+    }
   const post = new Post({
     _id: req.params.id,
     nombre: req.body.nombre,

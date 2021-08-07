@@ -1,10 +1,11 @@
 export interface Post{
   id: string;
   nombre: string;
-  precio: number;
+  precio: string;
   medida:string;
   descripcion: string;
-  disponibilidad: boolean;
-  unidades: number;
+  disponibilidad: string;
+  unidades: string;
+  imageUrl: string;
   author: string;
 }

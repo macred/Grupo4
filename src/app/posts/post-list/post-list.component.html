@@ -1,7 +1,6 @@
-<table class="table">
+<!-- <table class="table">
   <thead>
     <tr>
-
         <mat-card >
           <th scope="col" id="identificador1">Producto</th>
           <th scope="col" id="identificador2">Precio</th>
@@ -10,7 +9,6 @@
           <th scope="col" id="identificador5">Disponibilidad</th>
           <th scope="col" id="identificador6">Unidades</th>
         </mat-card>
-
     </tr>
   </thead>
   <tbody>
@@ -24,6 +22,9 @@
             <mat-panel-description>{{ post.descripcion }} </mat-panel-description>
             <mat-panel-description>{{ post.disponibilidad }} </mat-panel-description>
             <mat-panel-description>{{ post.unidades }} </mat-panel-description>
+            <div class="post-image">
+              <img [src]="post.imageUrl" [alt]="post.nombre" />
+            </div>
           </mat-expansion-panel-header>
           <mat-action-row *ngIf="isAuth && post.author === userId">
             <button (click)="addPost()" mat-button color="accent">
@@ -44,4 +45,75 @@
       </mat-accordion>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card" style="width: 16rem;" *ngFor="let post of posts">
+          <div class="card-body">
+          <img [src]="post.imageUrl" class="card-img-top" alt="...">
+          <h5 class="card-title">{{ post.nombre }}</h5>
+          <p class="card-text">{{ post.precio }}</p>
+          <p class="card-text">{{ post.medida }}</p>
+          <p class="card-text">{{ post.descripcion }}</p>
+          <p class="card-text">{{ post.disponibilidad }}</p>
+          <a class="btn btn-primary" (click)="addPost()">Comprar</a>
+          </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card" style="width: 16rem;" *ngFor="let post of posts">
+              <div class="card-body">
+              <img [src]="post.imageUrl" class="card-img-top" alt="...">
+              <h5 class="card-title">{{ post.nombre }}</h5>
+              <p class="card-text">{{ post.precio }}</p>
+              <p class="card-text">{{ post.medida }}</p>
+              <p class="card-text">{{ post.descripcion }}</p>
+              <p class="card-text">{{ post.disponibilidad }}</p>
+              <a class="btn btn-primary" (click)="addPost()">Comprar</a>
+              </div>
+            </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card" style="width: 16rem;" *ngFor="let post of posts">
+            <div class="card-body">
+            <img [src]="post.imageUrl" class="card-img-top" alt="...">
+            <h5 class="card-title">{{ post.nombre }}</h5>
+            <p class="card-text">{{ post.precio }}</p>
+            <p class="card-text">{{ post.medida }}</p>
+            <p class="card-text">{{ post.descripcion }}</p>
+            <p class="card-text">{{ post.disponibilidad }}</p>
+            <a class="btn btn-primary" (click)="addPost()">Comprar</a>
+            </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card" style="width: 16rem;" *ngFor="let post of posts">
+                <div class="card-body">
+                <img [src]="post.imageUrl" class="card-img-top" alt="...">
+                <h5 class="card-title">{{ post.nombre }}</h5>
+                <p class="card-text">{{ post.precio }}</p>
+                <p class="card-text">{{ post.medida }}</p>
+                <p class="card-text">{{ post.descripcion }}</p>
+                <p class="card-text">{{ post.disponibilidad }}</p>
+                <a class="btn btn-primary" (click)="addPost()">Comprar</a>
+                </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="btn-toolbar mt-5" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group me-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-primary">1</button>
+    <button type="button" class="btn btn-primary">2</button>
+    <button type="button" class="btn btn-primary">3</button>
+  </div>
+</div>
+
+
+
+
+
+

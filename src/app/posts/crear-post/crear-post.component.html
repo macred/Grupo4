@@ -1,71 +1,57 @@
-<p>
-
-</p>
 <div class="row">
-  <div class="col-md-5 mx-auto">
+  <div class="col-md-5 mt-3 mx-auto">
     <div class="card">
       <div class="card-header">
+        Agregar nuevo producto
+      </div>
         <div class= "form-group">
-        <mat-card>
-          <div class= "form-group">
-          <form (submit)="onSavePost(postForm)" #postForm="ngForm">
 
-            <mat-form-field>
-              <input
-              matInput type="text"
-              name="nombre"
-              [ngModel] = "post.nombre"
-              required #nombre="ngModel"
-              placeholder="Nombre"/>
-            </mat-form-field>
-            <mat-form-field>
-              <input
-              matInput type="text"
-              name="precio"
-              [ngModel] = "post.precio"
-              required
-              #precio="ngModel"
-              placeholder="Precio"/>
-            </mat-form-field>
-            <mat-form-field>
-            <input
-            matInput name="medida"
-            [ngModel] = "post.medida"
-            required
-            #medida="ngModel"
-            placeholder="Medida">
-            </mat-form-field>
-            <mat-form-field>
-              <input
-              matInput name="descripcion"
-              [ngModel] = "post.descripcion"
-              required
-              #descripcion="ngModel"
-              placeholder="Descripcion">
+          <mat-card>
+            <form [formGroup]="form" (submit)="onSavePost()">
+              <mat-form-field>
+                <input matInput type="text" placeholder="Nombre" formControlName="nombre"/>
+                <mat-error *ngIf="form.get('nombre')!.invalid">Campo invalido</mat-error>
               </mat-form-field>
               <mat-form-field>
-            <input
-            matInput name="disponibilidad"
-            [ngModel] = "post.disponibilidad"
-            required
-            #disponibilidad="ngModel"
-            placeholder="Disponibilidad">
-            </mat-form-field>
-            <mat-form-field>
-              <input
-              matInput name="unidades"
-              [ngModel] = "post.unidades"
-              required
-              #unidades="ngModel"
-              placeholder="Unidades">
-            </mat-form-field>
+                <input matInput type="text" placeholder="Precio" formControlName="precio"/>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput name="medida" placeholder="Medida" formControlName="medida">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput name="descripcion" placeholder="Descripcion" formControlName="descripcion">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput name="disponibilidad" placeholder="Disponibilidad" formControlName="disponibilidad">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput name="unidades" placeholder="Unidades" formControlName="unidades">
+              </mat-form-field>
+            <!-- <div class="form-group">
+              <label for="formFile" class="form-label mt-4">Agregar imagen</label>
+              <input class="form-control" type="file" id="formFile" (change)="onImageSelected($event)">
+            </div>
+            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+              <img [src]="imagePreview" [alt]="form.value.nombre"/>
+            </div> -->
+
+            <div>
+              <button mat-stroked-button type="button" (click)="fileSelect.click()">
+                Seleccionar imagen
+              </button>
+              <input type="file" #fileSelect (change)="onImageSelected($event)" />
+              <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+                <img [src]="imagePreview" [alt]="form.value.title" />
+              </div>
+            </div>
+
 
             <button type="submit" class= "btn btn-primary btn-block">Agregar producto</button>
-          </form>
-          </div>
+              </form>
+
           </mat-card>
         </div>
-      </div>
+
     </div>
   </div>
 
