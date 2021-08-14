@@ -84,7 +84,7 @@ router.put("/:id", checkAuth, multer({ storage: storage }).single("image"), (req
   let image = "";
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
-      image = url + "/files/" + req.file.filename;
+      imageUrl = url + "/files/" + req.file.filename;
     }
     else{
       image = req.body.imageUrl;
@@ -97,7 +97,8 @@ router.put("/:id", checkAuth, multer({ storage: storage }).single("image"), (req
     descripcion: req.body.descripcion,
     disponibilidad: req.body.disponibilidad,
     unidades: req.body.unidades,
-    author: req.userData.userId
+    imageUrl: imageUrl,
+    author: req.userData.userId,
   });
   Post.updateOne({ _id: req.params.id, author: req.userData.userId }, post).then((result) => {
     console.log(result);

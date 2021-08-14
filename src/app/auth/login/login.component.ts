@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   user:User;
 
   constructor(public authService: AuthService) {
-    this.user= {name:'', email: '', password: '', direccion:'', celular:''}
+    this.user= {id: "", name:'', email: '', password: '', direccion:'', celular:''}
   }
 
   ngOnInit(): void {

@@ -20,6 +20,11 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'dates', component: DatesComponent },
   { path: 'carrito', component: CarritoComponent },
+  {
+    path: 'edituser/:userId',
+    component: SignupComponent,
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

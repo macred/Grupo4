@@ -1,116 +1,53 @@
-<!-- <table class="table">
-  <thead>
-    <tr>
-        <mat-card >
-          <th scope="col" id="identificador1">Producto</th>
-          <th scope="col" id="identificador2">Precio</th>
-          <th scope="col" id="identificador3">Medida</th>
-          <th scope="col" id="identificador4">Descripción</th>
-          <th scope="col" id="identificador5">Disponibilidad</th>
-          <th scope="col" id="identificador6">Unidades</th>
-        </mat-card>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <mat-accordion>
-        <mat-expansion-panel *ngFor="let post of posts">
-          <mat-expansion-panel-header>
-            <mat-panel-title> {{ post.nombre }} </mat-panel-title>
-            <mat-panel-description>{{ post.precio }} </mat-panel-description>
-            <mat-panel-description>{{ post.medida }} </mat-panel-description>
-            <mat-panel-description>{{ post.descripcion }} </mat-panel-description>
-            <mat-panel-description>{{ post.disponibilidad }} </mat-panel-description>
-            <mat-panel-description>{{ post.unidades }} </mat-panel-description>
-            <div class="post-image">
-              <img [src]="post.imageUrl" [alt]="post.nombre" />
-            </div>
-          </mat-expansion-panel-header>
+
+<div class="row no-gutters">
+<div class="container" >
+  <div class="row card-group" >
+    <div class="row card-group" >
+      <div id="general" class="col-4" *ngFor="let post of posts">
+        <div class="card" style="width: 16rem;">
+          <div class="card-body">
+          <img [src]="post.imageUrl" class="card-img-top" alt="...">
+          <h3 class="card-title" style="text-align: center">
+          <b >{{ post.nombre }}</b>
+          </h3>
+          <p class="card-text">Precio: {{ post.precio }} {{post.imageUrl}}</p>
+          <p class="card-text">Medida de venta: {{ post.medida }}</p>
+          <p class="card-text">Descripción: {{ post.descripcion }}</p>
+          <p class="card-text">Disponibilidad: {{ post.disponibilidad }}</p>
+          <mat-action-row *ngIf="isAuth && post.author != userId">
+          <a class="btn btn-primary" (click)="addPost(post)">Comprar</a>
+          </mat-action-row>
           <mat-action-row *ngIf="isAuth && post.author === userId">
-            <button (click)="addPost(post)" mat-button color="accent">
-              Añadir al carrito
-            </button>
             <button
-              mat-stroked-button
-              color="primary"
+              mat-button
+              style="background-color:rgb(19, 57, 228)"
               [routerLink]="['/edit', post.id]"
             >
               Editar
             </button>
-            <button mat-button color="warn" (click)="onDelete(post.id)">
+            <button mat-button style="background-color:rgba(255, 0, 0, 0.63)" (click)="onDelete(post.id)">
               Eliminar
             </button>
           </mat-action-row>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </tr>
-  </tbody>
-</table> -->
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-      <div class="card" style="width: 16rem;" *ngFor="let post of posts">
-          <div class="card-body">
-          <img [src]="post.imageUrl" class="card-img-top" alt="...">
-          <h5 class="card-title">{{ post.nombre }}</h5>
-          <p class="card-text">{{ post.precio }}</p>
-          <p class="card-text">{{ post.medida }}</p>
-          <p class="card-text">{{ post.descripcion }}</p>
-          <p class="card-text">{{ post.disponibilidad }}</p>
-          <a class="btn btn-primary" (click)="addPost()">Comprar</a>
           </div>
       </div>
+
     </div>
-    <div class="col-sm-3">
-        <div class="card" style="width: 16rem;" *ngFor="let post of posts">
-              <div class="card-body">
-              <img [src]="post.imageUrl" class="card-img-top" alt="...">
-              <h5 class="card-title">{{ post.nombre }}</h5>
-              <p class="card-text">{{ post.precio }}</p>
-              <p class="card-text">{{ post.medida }}</p>
-              <p class="card-text">{{ post.descripcion }}</p>
-              <p class="card-text">{{ post.disponibilidad }}</p>
-              <a class="btn btn-primary" (click)="addPost()">Comprar</a>
-              </div>
-            </div>
     </div>
-    <div class="col-sm-3">
-      <div class="card" style="width: 16rem;" *ngFor="let post of posts">
-            <div class="card-body">
-            <img [src]="post.imageUrl" class="card-img-top" alt="...">
-            <h5 class="card-title">{{ post.nombre }}</h5>
-            <p class="card-text">{{ post.precio }}</p>
-            <p class="card-text">{{ post.medida }}</p>
-            <p class="card-text">{{ post.descripcion }}</p>
-            <p class="card-text">{{ post.disponibilidad }}</p>
-            <a class="btn btn-primary" (click)="addPost()">Comprar</a>
-            </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="card" style="width: 16rem;" *ngFor="let post of posts">
-                <div class="card-body">
-                <img [src]="post.imageUrl" class="card-img-top" alt="...">
-                <h5 class="card-title">{{ post.nombre }}</h5>
-                <p class="card-text">{{ post.precio }}</p>
-                <p class="card-text">{{ post.medida }}</p>
-                <p class="card-text">{{ post.descripcion }}</p>
-                <p class="card-text">{{ post.disponibilidad }}</p>
-                <a class="btn btn-primary" (click)="addPost()">Comprar</a>
-                </div>
-      </div>
   </div>
 </div>
-
-
-<div class="btn-toolbar mt-5" role="toolbar" aria-label="Toolbar with button groups">
+<div class="btn-toolbar mt-5" style="margin-bottom: 1rem;"role="toolbar" aria-label="Toolbar with button groups">
   <div class="btn-group me-2" role="group" aria-label="First group">
     <button type="button" class="btn btn-primary">1</button>
     <button type="button" class="btn btn-primary">2</button>
     <button type="button" class="btn btn-primary">3</button>
   </div>
 </div>
+</div>
+
+
+
+
 
 
 

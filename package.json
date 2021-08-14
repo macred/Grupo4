@@ -45,5 +45,17 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "nodemon": "^2.0.12",
     "typescript": "~4.3.2"
-  }
+  },
+  "description": ":heavy_check_mark: E-commerce productos agrícolas",
+  "main": "Server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macred/Grupo4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macred/Grupo4/issues"
+  },
+  "homepage": "https://github.com/macred/Grupo4#readme"
 }

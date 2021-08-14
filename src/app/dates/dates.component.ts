@@ -15,7 +15,7 @@ export class DatesComponent implements OnInit {
   private authListenerSub!: Subscription;
 
   constructor(private authService: AuthService) {
-    this.user= {name: "", email:"", password: "", direccion: "", celular: ""}
+    this.user= {id: "",name: "", email:"", password: "", direccion: "", celular: ""}
   }
 
   ngOnInit(): void {

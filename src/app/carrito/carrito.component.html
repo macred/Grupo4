@@ -1,6 +1,5 @@
 <h2 class="mx-ml"> Carrito de compra </h2>
 
-<<<<<<< HEAD
 <table class="table">
   <thead>
     <tr>
@@ -11,23 +10,25 @@
     </tr>
   </thead>
   <tbody >
+    <div class="row" *ngFor="let post of posts">
     <tr>
       <th scope="row">1</th>
       <td>imagen</td>
-      <td>Descripión</td>
-      <td>$</td>
+      <td>{{post.descripcion}}</td>
+      <td>{{post.precio}}</td>
     </tr>
     <tr>
       <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td>imagen</td>
+      <td>{{post.descripcion}}</td>
+      <td>{{post.precio}}</td>
     </tr>
     <tr>
       <th scope="row">3</th>
       <td colspan="2"></td>
       <td></td>
     </tr>
+  </div>
     <tr>
       <th scope="row"></th>
       <td colspan="2"></td>

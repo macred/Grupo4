@@ -31,9 +31,8 @@ export class PostService {
     postData.append("descripcion", post.descripcion);
     postData.append('disponibilidad', post.disponibilidad);
     postData.append('unidades', post.unidades);
+    postData.append('author', post.author);
     postData.append('image', image, post.nombre);
-
-
     this.http.post<{ post: Post }>(this.url, postData).subscribe((response) => {
       console.log(response.post);
       post.id = response.post.id;
@@ -64,6 +63,7 @@ export class PostService {
           unidades:post.unidades,
           imageurl: post.imageUrl,
           author: post.author,
+          authorData: post.authorData,
           }
       })
     })).subscribe(
@@ -93,9 +93,9 @@ export class PostService {
     return this.postUpdated.asObservable();
   }
 
-  updatePost(post: Post, id: string, image: File| string) {
+  updatePost(post: Post, id: string, image: File | string) {
     let postData: Post | FormData;
-    if (typeof image==='object'){
+    if (typeof image ==='object'){
       postData= new FormData();
       postData.append('id', id);
       postData.append('nombre', post.nombre);
@@ -104,6 +104,7 @@ export class PostService {
       postData.append('descripcion', post.descripcion);
       postData.append('disponibilidad', post.disponibilidad);
       postData.append('unidades',post.unidades);
+      postData.append('author', post.author);
       postData.append('image', image, post.nombre);
   }
   else{

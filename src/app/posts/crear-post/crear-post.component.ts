@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { PostService } from 'src/app/services/post/post.service';
 import {Post} from '../../Models/post.model'
 import { mimeType } from './mime-type-validator';
@@ -14,32 +15,34 @@ import { mimeType } from './mime-type-validator';
 export class CrearPostComponent implements OnInit {
   private isEditing = false;
   private postId!: string;
-  post!: Post;
+  post: Post;
   form!: FormGroup;
   imagePreview!: string;
 
 
   constructor(public postService: PostService, public route: ActivatedRoute) {
     this.post= {
-      id: "", nombre: "", precio: '', medida: "", descripcion: "", disponibilidad: '', unidades: '', imageUrl: " ", author:'' };
-  }
+      id: "", nombre: "", precio: '', medida: "", descripcion: "", disponibilidad: '', unidades: '', imageUrl: '', author:'' };
+    }
 
   ngOnInit(): void {
+    console.log(this.post)
     this.form = new FormGroup({
-      nombre: new FormControl(null,{validators: [Validators.required] }),
-      precio: new FormControl (null, {validators: [Validators.required] }),
-      medida: new FormControl(null,{validators: [Validators.required] }),
-      descripcion: new FormControl(null,{validators: [Validators.required] }),
-      disponibilidad: new FormControl(null,{validators: [Validators.required] }),
-      unidades: new FormControl(null,{validators: [Validators.required] }),
-      author: new FormControl(null,{validators: [Validators.required] }),
-      image: new FormControl(null,{validators: [Validators.required], asyncValidators:[mimeType] }),
-    });
+      nombre: new FormControl(),
+      precio: new FormControl (),
+      medida: new FormControl(),
+      descripcion: new FormControl(),
+      disponibilidad: new FormControl(),
+      unidades: new FormControl(),
+      author: new FormControl(),
+      image: new FormControl({asyncValidators:[mimeType], }),
+      });
+
 
     this.route.paramMap.subscribe((paramMap:ParamMap)=>{
-      if(paramMap.has("postId")){
+      if(paramMap.has('postId')){
         this.isEditing = true;
-        this.postId = paramMap.get("postId")!;
+        this.postId = paramMap.get('postId')!;
         this.postService.getPost(this.postId).subscribe(postData =>{
           this.post = {id: postData._id,
                       nombre: postData.nombre,
@@ -51,6 +54,7 @@ export class CrearPostComponent implements OnInit {
                       imageUrl: postData.imageUrl,
                       author: postData.author,
                     };
+                    console.log(this.post)
                      this.form.setValue({
                       nombre: this.post.nombre,
                       precio: this.post.precio,
@@ -59,6 +63,7 @@ export class CrearPostComponent implements OnInit {
                       disponibilidad: this.post.disponibilidad,
                       unidades: this.post.unidades,
                       image: this.post.imageUrl,
+                      author: this.post.author,
                   });
                   this.imagePreview = this.post.imageUrl;
                });
@@ -71,16 +76,19 @@ export class CrearPostComponent implements OnInit {
   }
 
   onSavePost():void {
+    console.log(this.form.value.image);
     if(this.form.invalid){
+      console.log(this.form.value.image);
       return;
     }
-
+    //Guardando en modo editar
     if(this.isEditing){
       this.postService.updatePost(this.form.value, this.postId, this.form.value.image);
     }
     else{
+      console.log(this.form.value.image);
       const postInfo: Post = {
-        id: this.form.value.id,
+        id: this.form.value._id,
         nombre: this.form.value.nombre,
         precio: this.form.value.precio,
         medida: this.form.value.medida,
@@ -90,6 +98,7 @@ export class CrearPostComponent implements OnInit {
         imageUrl: '',
         author: '',
       };
+      console.log(postInfo);
       this.postService.addPost(postInfo, this.form.value.image);
     }
     this.form.reset();

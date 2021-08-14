@@ -2,3 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+#principal{
+  background-image: url('https://www.ecestaticos.com/image/clipping/9975d868cefe9f412180cf4a71841035/crean-un-nuevo-compuesto-para-que-las-cosechas-no-sufran-con-la-sequia.jpg');
+  background-size: cover;
+}

@@ -1,6 +1,5 @@
 :host{
   display:block;
-  margin-top: 2rem;
 }
 
 #identificador1 {
@@ -39,4 +38,24 @@
   justify-content: space-between;
   margin-right: 5rem;
   font-weight: 700;
+}
+
+.post-image {
+  margin: auto;
+  width: 40%;
+}
+
+.post-image img {
+  width: 100%;
+}
+
+#general{
+  width: 900px;
+  margin-bottom: 2rem;
+}
+
+button{
+  text-decoration: none;
+  color: white;
+  margin-right: 1rem;
 }

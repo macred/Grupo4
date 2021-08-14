@@ -20,7 +20,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   postsSub: Subscription;
   isAuth = false;
-  userId!: string;
+  userId = 'ObjectId("60ff53f49962c228f0e90596")';
 
   private authListenerSub!: Subscription;
 

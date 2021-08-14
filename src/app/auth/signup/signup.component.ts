@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/Models/user.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import {Subscription } from 'rxjs';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -9,20 +11,53 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  user: User;
+  user!: User;
+  private isEditing = false;
+  users: User[] = [];
+  private userId!: string;
 
-  constructor(public authService: AuthService) {
-    this.user= {name:'', email: '', password: '', direccion:'', celular:''}
+
+  constructor(public authService: AuthService, public route: ActivatedRoute) {
+    this.user= {
+     id: "",
+     name: "",
+     email: '',
+     password: "",
+     direccion: "",
+     celular: ''};
   }
 
   ngOnInit(): void {
+   this.route.paramMap.subscribe((paramMap: ParamMap) => {
+     if (paramMap.has("userId")){
+      this.isEditing = true;
+      this.userId = paramMap.get("userId")!;
+      this.authService.getUse(this.userId).subscribe(userData =>{
+        this.user = {
+          id: userData._id,
+          name: userData.name,
+          email: userData.email,
+          password: userData.password,
+          direccion: userData.direccion,
+          celular: userData.celular}
+      })
+     }else{
+       this.isEditing = false;
+       this.userId = null!;
+     }
+   })
   }
 
 
-  onSignup(form:NgForm) {
+  onSignup(form:NgForm): void {
     if(form.invalid){
       return
     }
-    this.authService.createUser(form.value);
+    if(this.isEditing){
+      this.authService.updateUser(form.value, this.userId);
+    }else{
+      this.authService.createUser(form.value);
+    }
+    form.resetForm();
   }
 }

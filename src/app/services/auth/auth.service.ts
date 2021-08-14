@@ -15,6 +15,8 @@ export class AuthService {
   private isAuthenticated = true;
   private authStatusListener = new Subject<boolean>();
   private userId!: string;
+  users: User[] = [];
+  userUpdated = new Subject<User[]>();
 
 
   constructor(private http: HttpClient, private router: Router) {
@@ -29,12 +31,26 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  getUsersUpdateListener(){
+    return this.userUpdated.asObservable();
+  }
+
   getUserId() {
     return this.userId;
   }
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
+  }
+
+  updateUser(user: User, id: string) {
+    this.http.put(this.url + "/" + id, user).subscribe((result)=>{
+      const updatedUser = [...this.users];
+      const oldUserIndex = updatedUser.findIndex (p => p.id === user.id);
+      updatedUser[oldUserIndex] = user;
+      this.userUpdated.next([...this.users]);
+      this.router.navigate(["/dates"]);
+    })
   }
 
   createUser(user: User) {
@@ -47,6 +63,15 @@ export class AuthService {
     return this.http.get<User>(this.url + '/' + userId).pipe(map((response) => {
       return response;
     }));
+  }
+
+  getUse(id:string){
+    return this.http.get<{_id: string,
+                          name:string,
+                          email:string,
+                          password:string,
+                          direccion: string,
+                          celular:string}>(this.url+"/"+id);
   }
 
   login(email: string, password: string) {

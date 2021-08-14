@@ -7,7 +7,6 @@ const router = express.Router();
 const User = require("../Models/user");
 
 router.post("/signup", (req, res) => {
-  console.log(req.body);
   bcrypt.hash(req.body.password, 10).then((hash) => {
     const newUser = new User({
       name: req.body.name,
@@ -19,11 +18,9 @@ router.post("/signup", (req, res) => {
     newUser
       .save()
       .then((result) => {
-        console.log(result);
         res.status(201).json({ message: "Usuario creado", result: result });
       })
       .catch((err) => {
-        console.log(result);
         res.status(500).json({ error: err });
       });
   });
@@ -64,12 +61,24 @@ router.get("", (req, res) => {
 router.get("/:id", (req, res) => {
   User.findById(req.params.id).then((userResult) => {
     if (userResult) {
-      console.log(userResult)
       res.status(200).json(userResult);
     } else {
       res.status(404).json({ message: "Usuario no encontrado con el id enviado" });
     }
   });
+
+router.put("/:id", (req, res) => {
+  console.log(req.body)
+  const user = new User({_id: req.params.id,
+                        name: req.body.name,
+                        email: req.body.email,
+                        password: req.body.password,
+                        direccion: req.body.direccion,
+                        celular: req.body.celular});
+            User.updateOne({_id: req.params.id}, user).then((result) => {
+              res.status(200).json({message: 'Actualización ejecutada'})
+            })
+})
 });
 
 module.exports = router;
