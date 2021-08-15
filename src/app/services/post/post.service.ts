@@ -61,7 +61,7 @@ export class PostService {
           descripcion:post.descripcion,
           disponibilidad:post.disponibilidad,
           unidades:post.unidades,
-          imageurl: post.imageUrl,
+          imageUrl: post.imageUrl,
           author: post.author,
           authorData: post.authorData,
           }

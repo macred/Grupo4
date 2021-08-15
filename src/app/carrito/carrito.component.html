@@ -1,6 +1,8 @@
+<div class="container" style ="background-color: white;">
+
 <h2 class="mx-ml"> Carrito de compra </h2>
 
-<table class="table">
+<!-- <table class="table">
   <thead>
     <tr>
       <th scope="col">Item</th>
@@ -9,36 +11,42 @@
       <th scope="col">Precio</th>
     </tr>
   </thead>
-  <tbody >
-    <div class="row" *ngFor="let post of posts">
-    <tr>
-      <th scope="row">1</th>
-      <td>imagen</td>
-      <td>{{post.descripcion}}</td>
-      <td>{{post.precio}}</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>imagen</td>
-      <td>{{post.descripcion}}</td>
-      <td>{{post.precio}}</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2"></td>
-      <td></td>
-    </tr>
-  </div>
+  <tbody class="row" *ngFor="let post of posts" >
+    <div >
+      <tr><td>imagen</td></tr>
+      <tr><td>{{post.descripcion}}</td></tr>
+      <tr><td>{{post.precio}}</td></tr>
+    </div>
     <tr>
       <th scope="row"></th>
       <td colspan="2"></td>
       <td>Total</td>
     </tr>
   </tbody>
-</table>
+</table> -->
 
+
+<table class="table" >
+  <thead>
+    <ng-container matColumnDef="nombre">
+      <th scope="col"> Nombre </th>
+      <th scope="col"> Precio </th>
+      <th scope="col"> Medida </th>
+      <th scope="col"> Descripción </th>
+    </ng-container>
+    </thead>
+<ng-container class="row" *ngFor="let post of posts">
+  <div>
+    <td> {{post.nombre}} </td>
+    <td> {{post.precio}} </td>
+    <td> {{post.medida}} </td>
+    <td> {{post.descripcion}} </td>
+  </div>
+</ng-container>
+
+</table>
 <div>
   <button type="button" class="btn btn-outline-danger">Finalizar pedido</button>
  </div>
-
+</div>
 

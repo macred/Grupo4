@@ -15,7 +15,7 @@ const MIME_TYPES ={
 
 const storage = multer.diskStorage({
   destination: (req, file,cb) =>{
-    console.log(file);
+
     const isValid = MIME_TYPES[file.mimetype];
     let error = new Error ("El tipo de archivo no es válido");
     if(isValid){
@@ -59,6 +59,7 @@ router.post("", checkAuth, multer({storage:storage}).single("image"), (req, res)
     author: req.userData.userId,
   });
   postForAdd.save().then((createdPost) => {
+    console.log("Agregado de manera exitosa");
     res.status(201).json({
       post:{
         ...postForAdd,

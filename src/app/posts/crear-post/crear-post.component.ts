@@ -34,8 +34,8 @@ export class CrearPostComponent implements OnInit {
       descripcion: new FormControl(),
       disponibilidad: new FormControl(),
       unidades: new FormControl(),
-      author: new FormControl(),
       image: new FormControl({asyncValidators:[mimeType], }),
+      author: new FormControl(),
       });
 
 
@@ -76,9 +76,7 @@ export class CrearPostComponent implements OnInit {
   }
 
   onSavePost():void {
-    console.log(this.form.value.image);
     if(this.form.invalid){
-      console.log(this.form.value.image);
       return;
     }
     //Guardando en modo editar
@@ -86,7 +84,6 @@ export class CrearPostComponent implements OnInit {
       this.postService.updatePost(this.form.value, this.postId, this.form.value.image);
     }
     else{
-      console.log(this.form.value.image);
       const postInfo: Post = {
         id: this.form.value._id,
         nombre: this.form.value.nombre,
