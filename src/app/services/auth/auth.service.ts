@@ -12,7 +12,7 @@ import { PostService } from '../post/post.service';
 export class AuthService {
   private token: string;
   url = 'http://localhost:3000/api/user';
-  private isAuthenticated = true;
+  private isAuthenticated = false;
   private authStatusListener = new Subject<boolean>();
   private userId!: string;
   users: User[] = [];

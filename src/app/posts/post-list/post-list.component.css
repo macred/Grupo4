@@ -11,6 +11,20 @@
   width: 100%;
 }
 
+#titulos{
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#imagen{
+  border-radius: 8px;
+  border: solid rgb(120, 194, 173, 0.87);
+  padding: 5px;
+  width: 150px;
+  height: 150px;
+}
+
 #general{
   width: 900px;
   margin-bottom: 2rem;

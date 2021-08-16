@@ -14,7 +14,7 @@ import { CarritoService } from '../services/carrito/carrito.service'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   total$: Observable<number>
-  isAuth = true;
+  isAuth = false;
   user! : User;
   userId!: string;
   private authListenerSub!: Subscription;

@@ -1,50 +1,25 @@
 <div class="container" style ="background-color: white;">
 
-<h2 class="mx-ml"> Carrito de compra </h2>
-
-<!-- <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Item</th>
-      <th scope="col">Producto</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Precio</th>
-    </tr>
-  </thead>
-  <tbody class="row" *ngFor="let post of posts" >
-    <div >
-      <tr><td>imagen</td></tr>
-      <tr><td>{{post.descripcion}}</td></tr>
-      <tr><td>{{post.precio}}</td></tr>
-    </div>
-    <tr>
-      <th scope="row"></th>
-      <td colspan="2"></td>
-      <td>Total</td>
-    </tr>
-  </tbody>
-</table> -->
-
+<h2 class="mx-ml" id="titulos"> Carrito de compra </h2>
 
 <table class="table" >
   <thead>
-    <ng-container matColumnDef="nombre">
-      <th scope="col"> Nombre </th>
-      <th scope="col"> Precio </th>
-      <th scope="col"> Medida </th>
-      <th scope="col"> Descripción </th>
+    <ng-container matColumnDef="nombre" id="titulos">
+      <th scope="col" id="titulos"> Producto </th>
+      <th scope="col" id="titulos"> Nombre </th>
+      <th scope="col" id="titulos"> Medida </th>
+      <th scope="col" id="titulos"> Descripción </th>
+      <th scope="col" id="titulos"> Precio </th>
     </ng-container>
-    </thead>
-<ng-container class="row" *ngFor="let post of posts">
-  <div>
-    <td> {{post.nombre}} </td>
-    <td> {{post.precio}} </td>
-    <td> {{post.medida}} </td>
-    <td> {{post.descripcion}} </td>
-  </div>
-</ng-container>
-
+      <tr *ngFor="let post of posts">
+        <th id="titulos"><img id="imagen" [src]="post.imageUrl" class="card-img-top" alt="..."></th>
+        <th id="titulos">{{ post.nombre }}</th>
+        <th id="titulos">{{ post.medida }}</th>
+        <th id="titulos">{{ post.descripcion }}</th>
+        <th id="titulos">{{ post.precio }}</th>
+  </thead>
 </table>
+
 <div>
   <button type="button" class="btn btn-outline-danger">Finalizar pedido</button>
  </div>
